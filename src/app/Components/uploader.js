@@ -10,7 +10,7 @@ function Uploader() {
   const convertHeicToJpgApiCall = async (formData) => {
     try {
       const response = await axios.post(
-        "http://api.heic-to-jpg.moonsys.co/api/heic/heic-to-jpg",
+        "https://api.heic-to-jpg.moonsys.co/api/heic/heic-to-jpg",
         formData,
         {
           headers: {
