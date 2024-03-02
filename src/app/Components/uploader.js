@@ -57,9 +57,11 @@ function Uploader() {
         await convertHeicToJpgApiCall(formData);
         formData.delete("images");
       } catch (error) {
+        setLoadingComplete(false);
         console.error("Error converting file:", error);
       }
     }
+    setLoadingComplete(false);
   };
 
   return (
