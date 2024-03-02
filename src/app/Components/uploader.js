@@ -41,9 +41,14 @@ function Uploader() {
   };
 
   const onChangeHandler = async (event) => {
-    const selectedFile = event.target.files[0];
+    const selectedFiles = event.target.files;
+    const formData = new FormData();
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formData.append("images", selectedFiles[i]);
+    }
     setLoadingComplete(true);
-    if (selectedFile) {
+    if (selectedFiles) {
       try {
         const formData = new FormData();
         formData.append("images", selectedFile);
@@ -86,6 +91,7 @@ function Uploader() {
             style={{ display: "none" }}
             accept=".heic"
             onChange={onChangeHandler}
+            multiple
           />
         </div>
       </div>
