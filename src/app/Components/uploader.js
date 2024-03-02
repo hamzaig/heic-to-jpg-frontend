@@ -51,9 +51,6 @@ function Uploader() {
     if (selectedFiles) {
       setLoadingComplete(true);
       try {
-        const formData = new FormData();
-        formData.append("images", selectedFile);
-
         await convertHeicToJpgApiCall(formData);
         formData.delete("images");
       } catch (error) {
