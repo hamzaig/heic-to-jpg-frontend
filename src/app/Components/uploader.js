@@ -49,6 +49,7 @@ function Uploader() {
         formData.append("images", selectedFile);
 
         await convertHeicToJpgApiCall(formData);
+        formData.delete("images");
       } catch (error) {
         console.error("Error converting file:", error);
       }
