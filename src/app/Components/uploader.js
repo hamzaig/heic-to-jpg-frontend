@@ -91,7 +91,6 @@ function Uploader() {
             style={{ display: "none" }}
             accept=".heic"
             onChange={onChangeHandler}
-            multiple
           />
         </div>
       </div>
