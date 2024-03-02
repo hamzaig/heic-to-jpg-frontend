@@ -47,8 +47,9 @@ function Uploader() {
     for (let i = 0; i < selectedFiles.length; i++) {
       formData.append("images", selectedFiles[i]);
     }
-    setLoadingComplete(true);
+
     if (selectedFiles) {
+      setLoadingComplete(true);
       try {
         const formData = new FormData();
         formData.append("images", selectedFile);
