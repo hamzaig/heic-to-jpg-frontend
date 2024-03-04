@@ -17,22 +17,29 @@ function Uploader() {
             "Content-Type":
               "multipart/form-data; boundary=<calculated when request is sent>",
           },
-          responseType: "blob", // Set response type to blob
+          responseType: "blob",
         }
       );
 
-      // Create a temporary URL to download the file
+      // Determine the file extension based on the Content-Type
+      let fileExtension = "jpg"; // Default extension
+      const contentType = response.headers["content-type"];
+      if (!contentType) {
+        fileExtension = "zip";
+      } else if (contentType?.startsWith("image/")) {
+        fileExtension = contentType?.split("/")[1];
+      }
+
       const url = window.URL.createObjectURL(response.data);
-      // Create an anchor element and programmatically click it to trigger the download
+
       const link = document.createElement("a");
       link.href = url;
-      link.download = "Converted-doc"; // Set the desired file name and extension
+      link.download = `Converted-Images.${fileExtension}`; // Set the correct file extension
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       // Release the temporary URL
       window.URL.revokeObjectURL(url);
-
       setLoadingComplete(false);
     } catch (error) {
       console.error("An error occurred:", error);
@@ -91,6 +98,7 @@ function Uploader() {
             style={{ display: "none" }}
             accept=".heic"
             onChange={onChangeHandler}
+            multiple
           />
         </div>
       </div>
